@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "multiclass-sentiment"
-version = "1.0.0"
+version = "1.1.0"
 description = "Reproducible implementations accompanying the paper Multi-Class Sentiment Classification using Machine Learning and Deep Learning Techniques"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -18,8 +18,17 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-deep-learning = ["tensorflow>=2.15,<2.19"]
-bert = ["transformers>=4.40", "datasets>=2.18", "torch>=2.1"]
+paper = ["nltk>=3.8", "gensim>=4.3"]
+deep-learning = ["tensorflow>=2.15,<2.19", "nltk>=3.8"]
+bert = ["transformers>=4.40", "datasets>=2.18", "torch>=2.1", "nltk>=3.8"]
+all = [
+  "nltk>=3.8",
+  "gensim>=4.3",
+  "tensorflow>=2.15,<2.19",
+  "transformers>=4.40",
+  "datasets>=2.18",
+  "torch>=2.1",
+]
 dev = ["pytest>=8", "ruff>=0.5"]
 
 [project.scripts]
