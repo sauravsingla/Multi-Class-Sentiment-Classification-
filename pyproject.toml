@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "multiclass-sentiment"
+version = "1.0.0"
+description = "Reproducible implementations accompanying the paper Multi-Class Sentiment Classification using Machine Learning and Deep Learning Techniques"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Saurav Singla"}, {name = "Vikash Kumar"}]
+dependencies = [
+  "joblib>=1.3",
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "scikit-learn>=1.3",
+]
+
+[project.optional-dependencies]
+deep-learning = ["tensorflow>=2.15,<2.19"]
+bert = ["transformers>=4.40", "datasets>=2.18", "torch>=2.1"]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+sentiment-train = "multiclass_sentiment.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["multiclass_sentiment*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
