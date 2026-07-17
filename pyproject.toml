@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "multiclass-sentiment"
-version = "1.1.0"
+version = "2.0.0"
 description = "Reproducible implementations accompanying the paper Multi-Class Sentiment Classification using Machine Learning and Deep Learning Techniques"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -20,7 +20,13 @@ dependencies = [
 [project.optional-dependencies]
 paper = ["nltk>=3.8", "gensim>=4.3"]
 deep-learning = ["tensorflow>=2.15,<2.19", "nltk>=3.8"]
-bert = ["transformers>=4.40", "datasets>=2.18", "torch>=2.1", "nltk>=3.8"]
+bert = [
+  "transformers>=4.40",
+  "datasets>=2.18",
+  "torch>=2.1",
+  "accelerate>=0.29",
+  "nltk>=3.8",
+]
 all = [
   "nltk>=3.8",
   "gensim>=4.3",
@@ -28,11 +34,15 @@ all = [
   "transformers>=4.40",
   "datasets>=2.18",
   "torch>=2.1",
+  "accelerate>=0.29",
 ]
 dev = ["pytest>=8", "ruff>=0.5"]
 
 [project.scripts]
 sentiment-train = "multiclass_sentiment.cli:main"
+sentiment-m1 = "multiclass_sentiment.experiments.keras_models:main"
+sentiment-m2 = "multiclass_sentiment.experiments.m2_word2vec_rf:main"
+sentiment-m5 = "multiclass_sentiment.experiments.m5_bert:main"
 
 [tool.setuptools.packages.find]
 include = ["multiclass_sentiment*"]
@@ -42,7 +52,7 @@ testpaths = ["tests"]
 addopts = "-q"
 
 [tool.ruff]
-line-length = 100
+line-length = 120
 target-version = "py310"
 
 [tool.ruff.lint]
